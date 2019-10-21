@@ -7,7 +7,9 @@ import org.springframework.web.multipart.MultipartFile;
 import com.vir.accounting.dto.UserDto;
 
 /**
- * Created by ashish on 13/5/17.
+ * 
+ * @author Admin
+ *
  */
 public interface UserService {
     UserDto getUserById(Integer userId);

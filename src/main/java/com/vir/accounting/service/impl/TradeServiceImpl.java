@@ -8,6 +8,7 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
@@ -18,7 +19,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.vir.accounting.converter.TradeConverter;
+import com.vir.accounting.converter.UserConverter;
 import com.vir.accounting.dto.TradeDto;
+import com.vir.accounting.dto.UserDto;
 import com.vir.accounting.entity.Trade;
 import com.vir.accounting.repository.TradeRepository;
 import com.vir.accounting.service.TradeService;
@@ -72,8 +75,10 @@ public class TradeServiceImpl implements TradeService{
         	}	
         }
         tradeRepository.saveAll(tradeList);
-		
-
 	}
 
+	@Override
+	public List<TradeDto> getAllTrades() {
+		return tradeRepository.findAll().stream().map(TradeConverter::entityToDto).collect(Collectors.toList());
+	}
 }

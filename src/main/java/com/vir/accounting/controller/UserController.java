@@ -14,7 +14,9 @@ import com.vir.accounting.service.UserService;
 import com.vir.accounting.utils.Constants;
 
 /**
- * Created by ashish on 13/5/17.
+ * 
+ * @author Admin
+ *
  */
 @RequestMapping("/user")
 @RestController
