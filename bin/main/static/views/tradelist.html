@@ -24,15 +24,23 @@
 
         <table>
             <tr>
-                <th>symbol</th>
-                    <th>price</th>
-                        <th>quantity</th>
+                <th>Symbol</th>
+                    <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Buy Sell</th>
+                        <th>date</th>
+                        <th>Script Code</th>
+                        <th>Type</th>
             </tr>
 
-            <tr ng-repeat="birds in list">
-                <td>{{birds.symbol}}</td>
-                    <td>{{birds.price}}</td>
-                        <td>{{birds.quantity}}</td>
+            <tr ng-repeat="trades in list">
+                <td>{{trades.symbol}}</td>
+                    <td>{{trades.price}}</td>
+                        <td>{{trades.quantity}}</td>
+                        <td>{{trades.buySell}}</td>
+                        <td>{{trades.date}}</td>
+                        <td>{{trades.scriptCode}}</td>
+                        <td>{{trades.type}}</td>
             </tr>
         </table>
     </div>
@@ -51,12 +59,12 @@
                 contentType: "application/json"
             };
 
-            $scope.arrBirds = new Array;
+            $scope.arrTrades = new Array;
 
             $http(request)
                 .success(function (jsonData) {
-                    $scope.arrBirds = jsonData;
-                    $scope.list = $scope.arrBirds;
+                    $scope.arrTrades = jsonData;
+                    $scope.list = $scope.arrTrades;
                 })
                 .error(function () {
 

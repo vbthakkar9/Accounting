@@ -24,15 +24,19 @@
 
         <table>
             <tr>
-                <th>clientCode</th>
-                    <th>clientName</th>
-                        <th>bseCode</th>
+                <th>Client Code</th>
+                    <th>Client Name</th>
+                        <th>Bse Code</th>
+                        <th>Nse Code</th>
+                        <th>F&O Code</th>
             </tr>
 
-            <tr ng-repeat="birds in list">
-                <td>{{birds.clientCode}}</td>
-                    <td>{{birds.clientName}}</td>
-                        <td>{{birds.bseCode}}</td>
+            <tr ng-repeat="users in list">
+                <td>{{users.clientCode}}</td>
+                    <td>{{users.clientName}}</td>
+                        <td>{{users.bseCode}}</td>
+                        <td>{{users.nseCode}}</td>
+                        <td>{{users.fnoCode}}</td>
             </tr>
         </table>
     </div>
@@ -51,12 +55,12 @@
                 contentType: "application/json"
             };
 
-            $scope.arrBirds = new Array;
+            $scope.arrUsers = new Array;
 
             $http(request)
                 .success(function (jsonData) {
-                    $scope.arrBirds = jsonData;
-                    $scope.list = $scope.arrBirds;
+                    $scope.arrUsers = jsonData;
+                    $scope.list = $scope.arrUsers;
                 })
                 .error(function () {
 
