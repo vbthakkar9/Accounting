@@ -21,8 +21,7 @@ public class TradeResources {
 	@Autowired
 	TradeService tradeService;
 	
-	@PostMapping("/upload")
-	//@GetMapping("/upload")
+	@PostMapping("/upload")	
 	public void singleFileUpload(@RequestParam("file") MultipartFile file, RedirectAttributes redirectAttributes) throws Exception {		
 		tradeService.saveFileDetails(file);
 	}
