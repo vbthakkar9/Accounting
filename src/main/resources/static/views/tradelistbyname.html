@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
+
+<link rel="stylesheet" type="text/css" href="/css/main.css">
+
+</head>
+<body>
+ <a href="/" class="button">Client List</a>
+      <a href="/tradeList" class="button">Trade List</a>
+      <a href="/trade" class="button">Upload Trade</a>
+      <a href="/file" class="button">Upload Users</a>s
+	<div ng-app="myApp" ng-controller="myController">
+
+		<table>
+			<tr>
+				<th>Client Name</th>
+				<th>Symbol</th>
+				<th>Price</th>
+				<th>Quantity</th>
+				<th>Buy Sell</th>
+				<th>date</th>
+				<th>Script Code</th>
+				<th>Type</th>
+			</tr>
+
+			<tr ng-repeat="trades in list">
+			<td>{{trades.clientName}}</td>
+				<td>{{trades.symbol}}</td>
+				<td>{{trades.price}}</td>
+				<td>{{trades.quantity}}</td>
+				<td>{{trades.buySell}}</td>
+				<td>{{trades.date}}</td>
+				<td>{{trades.scriptCode}}</td>
+				<td>{{trades.type}}</td>
+			</tr>
+		</table>
+	</div>
+</body>
+
+<!--The Controller-->
+<script>
+	var app = angular.module('myApp', []);
+	app.controller('myController', function($scope, $http) {
+		var data = {
+				 name:"suz"
+				};
+		var request = {
+			method : 'get',
+			url : '/tradeFile/getTradesByName',
+			dataType : 'json',
+			 params: data,
+
+			contentType : "application/json"
+		};
+
+		$scope.arrTrades = new Array;
+
+		$http(request).success(function(jsonData) {
+			$scope.arrTrades = jsonData;
+			$scope.list = $scope.arrTrades;
+		}).error(function() {
+
+		});
+	});
+</script>
+</html>

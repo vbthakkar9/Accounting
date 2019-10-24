@@ -96,4 +96,18 @@ public class TradeServiceImpl implements TradeService{
 		}
 		return tradeList;
 	}
+	
+	public List<TradeDto> getTradesByName(String name) {
+		List<UserDto> userList = userRepository.findAll().stream().map(UserConverter::entityToDto).collect(Collectors.toList());
+		List<TradeDto> tradeList = tradeRepository.findBySymbolContains(name).stream().map(TradeConverter::entityToDto).collect(Collectors.toList());
+		for(TradeDto tradedto: tradeList){
+			for(UserDto userDto: userList){
+				if(tradedto.getClientCode().equalsIgnoreCase(userDto.getClientCode())){
+					tradedto.setClientName(userDto.getClientName());
+				}
+				
+			}
+		}
+		return tradeList;
+	}
 }

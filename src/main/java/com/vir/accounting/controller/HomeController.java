@@ -24,4 +24,10 @@ public class HomeController {
 	public String uploadTradeFile() {
 		return "tradeupload";
 	}
+	
+	@RequestMapping("/tradeByName")
+	public String tradeByName() {
+		return "tradelistbyname";
+	}
+	
 }

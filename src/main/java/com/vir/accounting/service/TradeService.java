@@ -9,4 +9,5 @@ import com.vir.accounting.dto.TradeDto;
 public interface TradeService {
 	 void saveFileDetails(MultipartFile file) throws Exception;
 	 List<TradeDto> getAllTrades();
+	List<TradeDto> getTradesByName(String name);
 }

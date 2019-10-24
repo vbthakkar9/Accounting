@@ -7,4 +7,5 @@ public interface Constants {
 	
 	
 	static final String GET_ALL_TRADES = "/getAllTrades";
+	static final String GET_TRADES_BY_NAME = "/getTradesByName";
 }

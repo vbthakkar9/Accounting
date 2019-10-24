@@ -30,5 +30,10 @@ public class TradeResources {
 	public List<TradeDto> getAllUsers() {
 		return tradeService.getAllTrades();
 	}
+
+	@RequestMapping(Constants.GET_TRADES_BY_NAME)
+	public List<TradeDto> getTradesByName(@RequestParam String name) {
+		return tradeService.getTradesByName(name);
+	}
 	
 }
