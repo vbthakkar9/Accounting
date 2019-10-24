@@ -30,4 +30,5 @@ public class TradeResources {
 	public List<TradeDto> getAllUsers() {
 		return tradeService.getAllTrades();
 	}
+	
 }
