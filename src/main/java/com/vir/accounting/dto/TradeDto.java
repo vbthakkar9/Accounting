@@ -24,6 +24,8 @@ public class TradeDto {
 	private String scriptCode;
 	
 	private String type;
+	
+	private String clientName;
 
 	public TradeDto(Integer tradeId, String symbol,Integer price, Integer quantity,String date,String clientCode,String buySell,String scriptCode, String type){
 		this.tradeId=tradeId;
@@ -112,6 +114,15 @@ public class TradeDto {
 	public void setType(String type) {
 		this.type = type;
 	}
+
+	public String getClientName() {
+		return clientName;
+	}
+
+	public void setClientName(String clientName) {
+		this.clientName = clientName;
+	}
+	
 	
 }
 

@@ -1,70 +1,68 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
-    
-    <style>
-        table 
-        {
-            width: auto;
-            font: 17px Calibri;
-        }
-        table, th, td 
-        {
-            border: solid 1px #DDD;
-            border-collapse: collapse;
-            padding: 2px 3px;
-            text-align: center;
-        }
-    </style>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
+
+<style>
+table, tr, td, th {
+	border: 1px solid grey;
+	border-collapse: collapse;
+	padding: 5px;
+}
+
+table tr:nth-child(odd) {
+	background-color: #d6f1f8;
+}
+
+table tr:nth-child(even) {
+	background-color: #ffffff;
+}
+</style>
 </head>
 <body>
-    <div ng-app="myApp" 
-        ng-controller="myController">
+	<div ng-app="myApp" ng-controller="myController">
 
-        <table>
-            <tr>
-                <th>Client Code</th>
-                    <th>Client Name</th>
-                        <th>Bse Code</th>
-                        <th>Nse Code</th>
-                        <th>F&O Code</th>
-            </tr>
+		<table>
+			<tr>
+				<th>Client Code</th>
+				<th>Client Name</th>
+				<th>Bse Code</th>
+				<th>Nse Code</th>
+				<th>F&O Code</th>
+			</tr>
 
-            <tr ng-repeat="users in list">
-                <td>{{users.clientCode}}</td>
-                    <td>{{users.clientName}}</td>
-                        <td>{{users.bseCode}}</td>
-                        <td>{{users.nseCode}}</td>
-                        <td>{{users.fnoCode}}</td>
-            </tr>
-        </table>
-    </div>
+			<tr ng-repeat="users in list">
+				<td>{{users.clientCode}}</td>
+				<td>{{users.clientName}}</td>
+				<td>{{users.bseCode}}</td>
+				<td>{{users.nseCode}}</td>
+				<td>{{users.fnoCode}}</td>
+			</tr>
+		</table>
+	</div>
 </body>
 
 <!--The Controller-->
 <script>
-    var app = angular.module('myApp', []);
-    app.controller('myController',
-        function ($scope, $http) {
+	var app = angular.module('myApp', []);
+	app.controller('myController', function($scope, $http) {
 
-            var request = {
-                method: 'get',
-                url: '/user/getAllUsers',
-                dataType: 'json',
-                contentType: "application/json"
-            };
+		var request = {
+			method : 'get',
+			url : '/user/getAllUsers',
+			dataType : 'json',
+			contentType : "application/json"
+		};
 
-            $scope.arrUsers = new Array;
+		$scope.arrUsers = new Array;
 
-            $http(request)
-                .success(function (jsonData) {
-                    $scope.arrUsers = jsonData;
-                    $scope.list = $scope.arrUsers;
-                })
-                .error(function () {
+		$http(request).success(function(jsonData) {
+			$scope.arrUsers = jsonData;
+			$scope.list = $scope.arrUsers;
+		}).error(function() {
 
-                });
-        });
+		});
+	});
 </script>
 </html>

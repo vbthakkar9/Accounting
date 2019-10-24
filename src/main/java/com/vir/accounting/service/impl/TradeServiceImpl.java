@@ -24,6 +24,7 @@ import com.vir.accounting.dto.TradeDto;
 import com.vir.accounting.dto.UserDto;
 import com.vir.accounting.entity.Trade;
 import com.vir.accounting.repository.TradeRepository;
+import com.vir.accounting.repository.UserRepository;
 import com.vir.accounting.service.TradeService;
 
 @Service
@@ -33,6 +34,9 @@ public class TradeServiceImpl implements TradeService{
 	
 	@Autowired
 	TradeRepository tradeRepository;
+
+	@Autowired
+	UserRepository userRepository;
 	
 	@Override
 	public void saveFileDetails(MultipartFile multiPartFile) throws Exception {
@@ -78,7 +82,18 @@ public class TradeServiceImpl implements TradeService{
 	}
 
 	@Override
+
 	public List<TradeDto> getAllTrades() {
-		return tradeRepository.findAll().stream().map(TradeConverter::entityToDto).collect(Collectors.toList());
+		List<UserDto> userList = userRepository.findAll().stream().map(UserConverter::entityToDto).collect(Collectors.toList());
+		List<TradeDto> tradeList = tradeRepository.findAll().stream().map(TradeConverter::entityToDto).collect(Collectors.toList());
+		for(TradeDto tradedto: tradeList){
+			for(UserDto userDto: userList){
+				if(tradedto.getClientCode().equalsIgnoreCase(userDto.getClientCode())){
+					tradedto.setClientName(userDto.getClientName());
+				}
+				
+			}
+		}
+		return tradeList;
 	}
 }

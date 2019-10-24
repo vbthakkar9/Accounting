@@ -1,74 +1,74 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
-    
-    <style>
-        table 
-        {
-            width: auto;
-            font: 17px Calibri;
-        }
-        table, th, td 
-        {
-            border: solid 1px #DDD;
-            border-collapse: collapse;
-            padding: 2px 3px;
-            text-align: center;
-        }
-    </style>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
+
+<style>
+table, tr, td, th {
+	border: 1px solid grey;
+	border-collapse: collapse;
+	padding: 5px;
+}
+
+table tr:nth-child(odd) {
+	background-color: #d6f1f8;
+}
+
+table tr:nth-child(even) {
+	background-color: #ffffff;
+}
+</style>
 </head>
 <body>
-    <div ng-app="myApp" 
-        ng-controller="myController">
+	<div ng-app="myApp" ng-controller="myController">
 
-        <table>
-            <tr>
-                <th>Symbol</th>
-                    <th>Price</th>
-                        <th>Quantity</th>
-                        <th>Buy Sell</th>
-                        <th>date</th>
-                        <th>Script Code</th>
-                        <th>Type</th>
-            </tr>
+		<table>
+			<tr>
+				<th>Client Name</th>
+				<th>Symbol</th>
+				<th>Price</th>
+				<th>Quantity</th>
+				<th>Buy Sell</th>
+				<th>date</th>
+				<th>Script Code</th>
+				<th>Type</th>
+			</tr>
 
-            <tr ng-repeat="trades in list">
-                <td>{{trades.symbol}}</td>
-                    <td>{{trades.price}}</td>
-                        <td>{{trades.quantity}}</td>
-                        <td>{{trades.buySell}}</td>
-                        <td>{{trades.date}}</td>
-                        <td>{{trades.scriptCode}}</td>
-                        <td>{{trades.type}}</td>
-            </tr>
-        </table>
-    </div>
+			<tr ng-repeat="trades in list">
+			<td>{{trades.clientName}}</td>
+				<td>{{trades.symbol}}</td>
+				<td>{{trades.price}}</td>
+				<td>{{trades.quantity}}</td>
+				<td>{{trades.buySell}}</td>
+				<td>{{trades.date}}</td>
+				<td>{{trades.scriptCode}}</td>
+				<td>{{trades.type}}</td>
+			</tr>
+		</table>
+	</div>
 </body>
 
 <!--The Controller-->
 <script>
-    var app = angular.module('myApp', []);
-    app.controller('myController',
-        function ($scope, $http) {
+	var app = angular.module('myApp', []);
+	app.controller('myController', function($scope, $http) {
 
-            var request = {
-                method: 'get',
-                url: '/tradeFile/getAllTrades',
-                dataType: 'json',
-                contentType: "application/json"
-            };
+		var request = {
+			method : 'get',
+			url : '/tradeFile/getAllTrades',
+			dataType : 'json',
+			contentType : "application/json"
+		};
 
-            $scope.arrTrades = new Array;
+		$scope.arrTrades = new Array;
 
-            $http(request)
-                .success(function (jsonData) {
-                    $scope.arrTrades = jsonData;
-                    $scope.list = $scope.arrTrades;
-                })
-                .error(function () {
+		$http(request).success(function(jsonData) {
+			$scope.arrTrades = jsonData;
+			$scope.list = $scope.arrTrades;
+		}).error(function() {
 
-                });
-        });
+		});
+	});
 </script>
 </html>
